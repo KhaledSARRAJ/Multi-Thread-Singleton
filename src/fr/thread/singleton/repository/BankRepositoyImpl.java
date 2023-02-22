@@ -26,6 +26,8 @@ public class BankRepositoyImpl implements BankRepository {
     public void add(BankTransaction bankTransaction) {
         count++;
         map.put("Banque numéro" + count, bankTransaction);
+        System.out.println(Thread.currentThread().getName());
+        System.out.println("Size: "+ map.values().size());
     }
 
     @Override
@@ -35,8 +37,10 @@ public class BankRepositoyImpl implements BankRepository {
     }
 
     @Override
-    public void getAll() {
-        map.forEach((key, tab) -> System.out.println("Bonjour le key " + key + "  Bonjour la Bank" + tab));
+    public synchronized
+    void getAll() {
+        count++;
+        map.forEach((a, b) -> System.out.println("Compteur : "+count+"  Bonjour le key: ******** " + a + "  Bonjour la Bank:****************" + b));
 
 
     }
